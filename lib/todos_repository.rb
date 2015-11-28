@@ -9,6 +9,7 @@ module Ferdig
       @queries.register(:insert, "INSERT INTO todos (title) VALUES ($1) RETURNING id, title, completed_at", :title)
       @queries.register(:all, "SELECT * FROM todos;") { |raw_todo| model.new(raw_todo) }
       @queries.register(:find, "SELECT * FROM todos WHERE id = $1", :id) { |raw_todo| model.new(raw_todo) }
+      @queries.register(:delete, "DELETE FROM todos WHERE id = $1", :id)
     end
 
     def all
@@ -22,6 +23,10 @@ module Ferdig
 
     def find_by(id:)
       @queries.run(:find, id: id).first
+    end
+
+    def delete_by(id:)
+      @queries.run(:delete, id: id)
     end
   end
 end

@@ -24,3 +24,11 @@ test 'get a single todo item by its ID' do |repo|
   todo = repo.find_by(id: '1')
   assert_equal 'My first todo', todo.title
 end
+
+test 'delete a single todo item' do |repo|
+  repo.add(Ferdig::Todo.new(title: 'My first todo'))
+  repo.add(Ferdig::Todo.new(title: 'My second todo'))
+  assert_equal 2, repo.all.length
+  repo.delete_by(id: '1')
+  assert_equal 1, repo.all.length
+end
