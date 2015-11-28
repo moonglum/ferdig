@@ -1,0 +1,24 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    clap (1.0.0)
+    cutest (1.2.2)
+      clap
+    nomadize (0.2.0)
+      pg (~> 0.18.1)
+    pg (0.18.4)
+    silueta (0.0.3)
+    sql_capsule (0.1.1)
+      pg (~> 0.18.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  cutest
+  nomadize
+  silueta
+  sql_capsule
+
+BUNDLED WITH
+   1.10.6

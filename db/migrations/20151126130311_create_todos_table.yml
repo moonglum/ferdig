@@ -1,0 +1,8 @@
+---
+:up:
+  CREATE TABLE todos (
+    id SERIAL,
+    title varchar(40) NOT NULL,
+    completed_at date
+  );
+:down: 'DROP TABLE todos;'

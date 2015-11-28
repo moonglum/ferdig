@@ -1,0 +1,5 @@
+migrations_path: db/migrations
+development:
+  :dbname: ferdig_development
+test:
+  :dbname: ferdig_test
