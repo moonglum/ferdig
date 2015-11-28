@@ -6,7 +6,7 @@ module Ferdig
   class TodosRepository
     def initialize
       @queries = Ferdig.create_query_group
-      @queries.register(:insert, "INSERT INTO todos (title) VALUES ($1)", :title)
+      @queries.register(:insert, "INSERT INTO todos (title) VALUES ($1) RETURNING id, title, completed_at", :title)
       @queries.register(:all, "SELECT * FROM todos;") { |raw_todo| Todo.new(raw_todo) }
     end
 
@@ -15,7 +15,8 @@ module Ferdig
     end
 
     def add(todo)
-      @queries.run(:insert, title: todo.title)
+      result = @queries.run(:insert, title: todo.title).first
+      todo.update(result)
     end
   end
 end
