@@ -18,3 +18,9 @@ test 'adding a todo item should set its ID' do |repo|
   repo.add(todo)
   assert_equal "1", todo.id
 end
+
+test 'get a single todo item by its ID' do |repo|
+  repo.add(Ferdig::Todo.new(title: 'My first todo'))
+  todo = repo.find_by(id: '1')
+  assert_equal 'My first todo', todo.title
+end
