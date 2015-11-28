@@ -10,12 +10,12 @@ This is a sample application for a [#lesscode](http://lesscode.is) Ruby web stac
     * [sql_capsule](https://github.com/piisalie/sql_capsule) for accessing the database
     * [nomadize](https://github.com/piisalie/nomadize) for migrations
 * And the following big dependencies: Rake (will try make instead), Bundler (will try gs, bs or gst instead) and Capybara (can't really replace it)
+* [scrivener](https://github.com/soveran/scrivener) for validation
 
 I also want to add the following components when I need them:
 
 * [minuteman](https://github.com/elcuervo/minuteman) for analytics
 * [ost](https://github.com/soveran/ost) for background jobs
-* [scrivener](https://github.com/soveran/scrivener) or [dry-validation](http://dryrb.github.io/dry-validation) for validation
 * [shield](https://github.com/cyx/shield) for authentication
 
 Why is it called ferdig? You can find the explanation [here](https://twitter.com/frodsan/status/659303409074503684).

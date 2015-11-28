@@ -34,7 +34,15 @@ test 'add a todo' do |agent|
   agent.visit '/'
   agent.fill_in 'title', with: 'Something new'
   agent.click_button 'create'
+  assert_equal 1, agent.all('.todos li').length
   agent.within '.todos' do
     assert agent.page.has_content?('Something new'), 'Contains created item'
   end
+end
+
+test 'do not create an empty todo item' do |agent|
+  agent.visit '/'
+  agent.fill_in 'title', with: ''
+  agent.click_button 'create'
+  assert_equal 0, agent.all('.todos li').length
 end

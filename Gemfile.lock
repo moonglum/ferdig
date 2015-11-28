@@ -30,6 +30,7 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.4.2)
+    scrivener (1.0.0)
     seg (0.0.1)
     silueta (0.0.3)
     sql_capsule (0.1.1)
@@ -52,6 +53,7 @@ DEPENDENCIES
   hmote
   nomadize
   rake
+  scrivener
   silueta
   sql_capsule
   tynn
