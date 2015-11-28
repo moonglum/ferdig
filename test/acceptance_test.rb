@@ -1,0 +1,31 @@
+require './test_helper'
+require 'app'
+
+def prefill(*titles)
+  repo = Ferdig::TodosRepository.new
+  titles.each do |title|
+    repo.add(Ferdig::Todo.new(title: title))
+  end
+end
+
+prepare do
+  Capybara.app = Tynn
+end
+
+setup do
+  Agent.new
+end
+
+test 'get index should be 200 ok' do |agent|
+  agent.visit '/'
+  assert_equal 200, agent.page.status_code
+end
+
+test 'get index should give a list of todos' do |agent|
+  prefill('Buy milk', 'Get a new hat')
+  agent.visit '/'
+  agent.within '.todos' do
+    assert agent.page.has_content?('Buy milk'), 'Contains first todo item'
+    assert agent.page.has_content?('Get a new hat'), 'Contains second todo item'
+  end
+end

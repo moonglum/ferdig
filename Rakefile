@@ -5,6 +5,10 @@ task :test => ['db:test:prepare'] do
   exec 'cutest test/*.rb'
 end
 
+task :server do
+  exec 'rackup --port 3000 --host 0.0.0.0'
+end
+
 namespace :db do
   namespace :test do
     task :prepare do
