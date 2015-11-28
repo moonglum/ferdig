@@ -4,11 +4,11 @@ require 'todo'
 
 module Ferdig
   class TodosRepository
-    def initialize
+    def initialize(model = Todo)
       @queries = Ferdig.create_query_group
       @queries.register(:insert, "INSERT INTO todos (title) VALUES ($1) RETURNING id, title, completed_at", :title)
-      @queries.register(:all, "SELECT * FROM todos;") { |raw_todo| Todo.new(raw_todo) }
-      @queries.register(:find, "SELECT * FROM todos WHERE id = $1", :id) { |raw_todo| Todo.new(raw_todo) }
+      @queries.register(:all, "SELECT * FROM todos;") { |raw_todo| model.new(raw_todo) }
+      @queries.register(:find, "SELECT * FROM todos WHERE id = $1", :id) { |raw_todo| model.new(raw_todo) }
     end
 
     def all
