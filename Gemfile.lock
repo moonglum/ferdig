@@ -1,12 +1,19 @@
+GIT
+  remote: git://github.com/djanowski/cutest.git
+  revision: 9233d57e4eba62d2478c9be8ad318a3176c4b78f
+  branch: master
+  specs:
+    cutest (1.2.2)
+      clap
+
 GEM
   remote: https://rubygems.org/
   specs:
     clap (1.0.0)
-    cutest (1.2.2)
-      clap
     nomadize (0.2.0)
       pg (~> 0.18.1)
     pg (0.18.4)
+    rake (10.4.2)
     silueta (0.0.3)
     sql_capsule (0.1.1)
       pg (~> 0.18.1)
@@ -15,8 +22,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cutest
+  cutest!
   nomadize
+  rake
   silueta
   sql_capsule
 
