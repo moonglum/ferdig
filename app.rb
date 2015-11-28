@@ -15,5 +15,12 @@ Tynn.define do
       todos = todos_repository.all
       render 'index.html', todos: todos
     end
+
+    post do
+      title = req.params["title"]
+      todos_repository.add(Ferdig::Todo.new(title: title))
+      todos = todos_repository.all
+      render 'index.html', todos: todos
+    end
   end
 end

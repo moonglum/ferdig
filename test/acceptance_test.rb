@@ -29,3 +29,12 @@ test 'get index should give a list of todos' do |agent|
     assert agent.page.has_content?('Get a new hat'), 'Contains second todo item'
   end
 end
+
+test 'add a todo' do |agent|
+  agent.visit '/'
+  agent.fill_in 'title', with: 'Something new'
+  agent.click_button 'create'
+  agent.within '.todos' do
+    assert agent.page.has_content?('Something new'), 'Contains created item'
+  end
+end
