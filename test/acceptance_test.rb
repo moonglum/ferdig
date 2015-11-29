@@ -45,4 +45,7 @@ test 'do not create an empty todo item' do |agent|
   agent.fill_in 'title', with: ''
   agent.click_button 'create'
   assert_equal 0, agent.all('.todos li').length
+  agent.within '.errors' do
+    assert agent.has_content? 'Missing'
+  end
 end

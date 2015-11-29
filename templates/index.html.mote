@@ -1,3 +1,9 @@
+% if errors.show?
+  <div class="errors">
+    {{ errors }}
+  </div>
+% end
+
 <ul class="todos">
   % todos.each do |todo|
     <li>{{ todo.title }}</li>
