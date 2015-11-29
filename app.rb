@@ -13,6 +13,10 @@ todos_repository = Ferdig::TodosRepository.new
 
 Tynn.define do
   root do
+    res.redirect '/todos'
+  end
+
+  on 'todos' do
     get do
       render 'index.html', todos: todos_repository.all, errors: ErrorPresenter.new
     end
