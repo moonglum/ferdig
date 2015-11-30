@@ -6,7 +6,14 @@
 
 <ul class="todos">
   % todos.each do |todo|
-    <li>{{ todo.title }}</li>
+    <li>
+      <form name="{{ app.parameterize(todo.title) }}" method="post" action="/todos/{{ todo.id }}">
+        <input type="hidden" name="_method" value="put">
+        <input type="checkbox" name="done" {{ todo.done? ? 'checked' : '' }}>
+        {{ todo.title }}
+        <input type="submit" value="Update" class="update">
+      </form>
+    </li>
   % end
 </ul>
 

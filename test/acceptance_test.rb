@@ -43,9 +43,27 @@ end
 test 'do not create an empty todo item' do |agent|
   agent.visit '/'
   agent.fill_in 'title', with: ''
-  agent.click_button 'create'
+  agent.click_button 'Create'
   assert_equal 0, agent.all('.todos li').length
   agent.within '.errors' do
     assert agent.has_content? 'Missing'
+  end
+end
+
+test 'check off a todo item' do |agent|
+  prefill('Getting things done', 'Procastinating')
+  agent.visit '/'
+
+  agent.within 'form[name=getting-things-done]' do
+    agent.check 'done'
+    agent.click_button 'Update'
+  end
+
+  agent.within 'form[name=getting-things-done]' do
+    assert agent.find('input[name=done]')['checked']
+  end
+
+  agent.within 'form[name=procastinating]' do
+    assert !agent.find('input[name=done]')['checked']
   end
 end
