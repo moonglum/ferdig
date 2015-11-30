@@ -10,7 +10,7 @@ module Ferdig
       @queries.register(:all, "SELECT * FROM todos;") { |raw_todo| model.new(raw_todo) }
       @queries.register(:find, "SELECT * FROM todos WHERE id = $1", :id) { |raw_todo| model.new(raw_todo) }
       @queries.register(:delete, "DELETE FROM todos WHERE id = $1", :id)
-      @queries.register(:update, "UPDATE todos SET title = $1, completed_at = $2 WHERE $3", :title, :completed_at, :id)
+      @queries.register(:update, "UPDATE todos SET title = $1, completed_at = $2 WHERE id = $3", :title, :completed_at, :id)
     end
 
     def all
