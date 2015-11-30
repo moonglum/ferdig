@@ -25,8 +25,12 @@ test 'get index should give a list of todos' do |agent|
   prefill('Buy milk', 'Get a new hat')
   agent.visit '/'
   agent.within '.todos' do
-    assert agent.page.has_content?('Buy milk'), 'Contains first todo item'
-    assert agent.page.has_content?('Get a new hat'), 'Contains second todo item'
+    agent.within '[name=buy-milk]' do
+      assert agent.page.has_content?('Buy milk'), 'Contains first todo item'
+    end
+    agent.within '[name=get-a-new-hat]' do
+      assert agent.page.has_content?('Get a new hat'), 'Contains second todo item'
+    end
   end
 end
 
@@ -35,7 +39,7 @@ test 'add a todo' do |agent|
   agent.fill_in 'title', with: 'Something new'
   agent.click_button 'create'
   assert_equal 1, agent.all('.todos li').length
-  agent.within '.todos' do
+  agent.within '.todos [name=something-new]' do
     assert agent.page.has_content?('Something new'), 'Contains created item'
   end
 end
