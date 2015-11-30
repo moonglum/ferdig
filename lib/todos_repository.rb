@@ -7,7 +7,7 @@ module Ferdig
     def initialize(model = Todo)
       @queries = Ferdig.create_query_group
       @queries.register(:insert, "INSERT INTO todos (title) VALUES ($1) RETURNING id, title, completed_at", :title)
-      @queries.register(:all, "SELECT * FROM todos;") { |raw_todo| model.new(raw_todo) }
+      @queries.register(:all, "SELECT * FROM todos ORDER BY id;") { |raw_todo| model.new(raw_todo) }
       @queries.register(:find, "SELECT * FROM todos WHERE id = $1", :id) { |raw_todo| model.new(raw_todo) }
       @queries.register(:delete, "DELETE FROM todos WHERE id = $1", :id)
       @queries.register(:update, "UPDATE todos SET title = $1, completed_at = $2 WHERE id = $3", :title, :completed_at, :id)
