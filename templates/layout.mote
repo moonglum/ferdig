@@ -1,1 +1,11 @@
-{{! content }}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Your Todos | ferdig</title>
+    <meta name="description" content="ferdig is a simple todolist">
+  </head>
+  <body>
+    {{! content }}
+  </body>
+</html>
